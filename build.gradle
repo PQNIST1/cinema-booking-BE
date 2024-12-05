@@ -1,0 +1,60 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.1'
+	id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'com.dev'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.12.5'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '3.2.4'
+
+// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui
+//	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.14'
+
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '3.2.5'
+// https://mvnrepository.com/artifact/org.springframework/spring-tx
+	implementation group: 'org.springframework', name: 'spring-tx', version: '6.1.2'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'com.google.zxing:core:3.4.1'
+	implementation 'com.google.zxing:javase:3.4.1'
+
+    compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
